@@ -1,0 +1,48 @@
+argo-cd:
+  server:
+    service:
+      type: LoadBalancer
+  configs:
+    params:
+      server.insecure: "false"
+argocd-apps:
+  applications:
+    # Application to manage ArgoCD & Kargo stack itself
+    argo-stack:
+      namespace: argo-stack
+      source:
+        repoURL: https://github.com/ansilh/kind-argo-stack.git
+        targetRevision: develop
+        path: argo-stack
+        directory:
+          recurse: true
+      project: default
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: argo-stack
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: false
+          selfHeal: false
+      info:
+        - name: docs
+          value: https://argo-cd.readthedocs.io/en/stable/
+  projects:
+    # Project to handle ArgoCD Stack
+    argo-stack:
+      namespace: argo-stack
+      description: All Argo Services
+      sourceRepos:
+        - '*'
+      destinations:
+        - namespace: '*'
+          server: https://kubernetes.default.svc
+      clusterResourceWhitelist:
+        - group: '*'
+          kind: '*'
+      namespaceResourceWhitelist:
+        - group: '*'
+          kind: '*'
+   

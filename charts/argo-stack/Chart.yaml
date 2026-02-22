@@ -1,0 +1,10 @@
+apiVersion: v2
+name: argo-stack
+version: 0.1.0
+dependencies:
+  - name: argo-cd
+    version: 9.4.3
+    repository: https://argoproj.github.io/argo-helm
+  - name: argocd-apps
+    version: 2.0.4
+    repository: https://argoproj.github.io/argo-helm
