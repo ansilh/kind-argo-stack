@@ -10,12 +10,12 @@ argocd-apps:
     # Application to manage ArgoCD & Kargo stack itself
     argo-stack:
       namespace: argo-stack
-      source:
-        repoURL: https://github.com/ansilh/kind-argo-stack.git
-        targetRevision: main
-        path: apps
-        directory:
-          recurse: true
+      sources:
+        - repoURL: https://github.com/ansilh/kind-argo-stack.git
+          targetRevision: main
+          path: apps
+          directory:
+            recurse: true
       project: default
       destination:
         server: https://kubernetes.default.svc
