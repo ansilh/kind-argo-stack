@@ -1,0 +1,37 @@
+argocd-apps:
+
+  # -- Deploy ArgoCD Applications within this helm release
+  # @default -- `[]` (See [values.yaml])
+  ## Ref: https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/
+  applications:
+    ####################################################
+
+    lab-applications:
+      # The App-of-apps for all Lab applications
+      namespace: argocd
+      # Optional metadata
+      additionalLabels: {}
+      additionalAnnotations: {}
+      # Where to get the other applications this app will manage
+      source:
+        repoURL: 'https://github.com/ansilh/kind-argo-stack.git'
+        targetRevision: main
+        path: argocd-lab/argocd-apps/lab # Any argocd applications under this directory will be synced. However, the apps within this directory will not be synced.
+        directory:
+          recurse: true
+      # Destination for this application - in this case ArgoCD cluster and namespace
+      project: lab-tools
+      destination:
+        server: https://kubernetes.default.svc # https://kubernetes.default.svc means "same cluster as ArgoCD is running in"
+        namespace: argocd
+      # How to deploy and keep this application up-to-date
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated: # Keep this application up to date automatically (auto-sync)
+          prune: false # Don't auto-remove resources. DO NOT CHANGE THIS FOR THIS APPLICATION
+          selfHeal: false # Do not force drift correction
+      # Extra key: value pairs to show in the ArgoCD gui
+      info:
+        - name: docs
+          value: https://argo-cd.readthedocs.io/en/stable/

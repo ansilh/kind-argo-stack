@@ -1,22 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argo-stack
-  namespace: argo-stack
+  name: tools-argocd
 spec:
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: argo-stack
+    namespace: argocd
   source:
-    path: charts/argo-stack
+    path: charts/argocd-lab
     repoURL: 'https://github.com/ansilh/kind-argo-stack.git'
     targetRevision: main
     helm:
       valueFiles:
         - 'values.yaml'
-        - 'values-apps.yaml'
-        - 'values-projects.yaml'
-  project: argo-stack
+        - 'lab/values-lab-app-of-apps.yaml'
+        - 'lab/values-lab-projects.yaml'
+        - 'lab/values-lab-rbac.yaml'
+      releaseName: argocd
+  project: default
   syncPolicy:
     syncOptions:
       - CreateNamespace=true

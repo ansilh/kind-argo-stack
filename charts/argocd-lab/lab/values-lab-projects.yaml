@@ -1,0 +1,23 @@
+argocd-apps:
+
+  # -- Deploy ArgoCD Projects within this helm release
+  # @default -- `[]` (See [values.yaml])
+  ## Ref: https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/
+  projects:
+    ####################################################
+    lab-tools:
+      namespace: argocd
+      additionalLabels: {}
+      additionalAnnotations: {}
+      description: All Lab Services
+      sourceRepos:
+        - '*'
+      destinations:
+        - namespace: '*'
+          server: https://kubernetes.default.svc
+      clusterResourceWhitelist:
+        - group: '*'
+          kind: '*'
+      namespaceResourceWhitelist:
+        - group: '*'
+          kind: '*'

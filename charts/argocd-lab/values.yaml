@@ -5,5 +5,5 @@ argo-cd:
   configs:
     params:
       server.insecure: "false"
-
-   
+  dex:
+    enabled: false
