@@ -7,7 +7,27 @@ argo-cd:
       server.insecure: "false"
 argocd-apps:
   applications:
-    # Application to manage ArgoCD & Kargo stack itself
+    # Self-managed ArgoCD stack
+    argo-stack:
+      namespace: argo-stack
+      source:
+        repoURL: https://github.com/ansilh/kind-argo-stack.git
+        targetRevision: main
+        path: charts/argo-stack
+        helm:
+          valueFiles:
+            - values.yaml
+      project: argo-stack
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: argo-stack
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+      info:
+        - name: docs
+          value: https://argo-cd.readthedocs.io/en/stable/
+    # App-of-apps for workloads (kargo, etc.)
     argo-stack-apps:
       namespace: argo-stack
       sources:
@@ -16,7 +36,7 @@ argocd-apps:
           path: apps
           directory:
             recurse: true
-      project: default
+      project: argo-stack
       destination:
         server: https://kubernetes.default.svc
         namespace: argo-stack
@@ -26,9 +46,6 @@ argocd-apps:
         automated:
           prune: false
           selfHeal: false
-      info:
-        - name: docs
-          value: https://argo-cd.readthedocs.io/en/stable/
   projects:
     # Project to handle ArgoCD Stack
     argo-stack:

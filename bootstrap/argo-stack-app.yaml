@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: argo-stack
+  namespace: argo-stack
 spec:
   destination:
     server: 'https://kubernetes.default.svc'
@@ -13,7 +14,6 @@ spec:
     helm:
       valueFiles:
         - 'values.yaml'
-      releaseName: argo-stack
   project: argo-stack
   syncPolicy:
     syncOptions:
