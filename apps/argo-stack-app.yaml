@@ -5,7 +5,7 @@ metadata:
 spec:
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: argocd
+    namespace: argo-stack
   source:
     path: charts/argo-stack
     repoURL: 'https://github.com/ansilh/kind-argo-stack.git'
