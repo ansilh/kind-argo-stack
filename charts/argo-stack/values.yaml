@@ -24,6 +24,7 @@ argocd-apps:
       syncPolicy:
         syncOptions:
           - CreateNamespace=true
+          - ServerSideApply=true
       info:
         - name: docs
           value: https://argo-cd.readthedocs.io/en/stable/
@@ -43,6 +44,7 @@ argocd-apps:
       syncPolicy:
         syncOptions:
           - CreateNamespace=true
+          - ServerSideApply=true
         automated:
           prune: false
           selfHeal: false
