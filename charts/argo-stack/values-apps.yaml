@@ -1,0 +1,53 @@
+argocd-apps:
+  applications:
+    # Self-managed ArgoCD stack
+    argo-stack:
+      # The App-of-apps for all applications
+      namespace: argo-stack
+      # Optional metadata
+      additionalLabels: {}
+      additionalAnnotations: {}
+      # Where to get the other applications this app will manage
+      source:
+        repoURL: 'https://github.com/ansilh/kind-argo-stack.git'
+        targetRevision: main
+        path: apps/argocd # Any argocd applications under this directory will be synced. However, the apps within this directory will not be synced.
+        directory:
+          recurse: true
+      # Destination for this application - in this case ArgoCD cluster and namespace
+      project: argo-stack
+      destination:
+        server: https://kubernetes.default.svc # https://kubernetes.default.svc means "same cluster as ArgoCD is running in"
+        namespace: argo-stack
+      # How to deploy and keep this application up-to-date
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
+        automated: # Keep this application up to date automatically (auto-sync)
+          prune: false # Don't auto-remove resources. DO NOT CHANGE THIS FOR THIS APPLICATION
+          selfHeal: false # Do not force drift correction
+      # Extra key: value pairs to show in the ArgoCD gui
+      info:
+        - name: docs
+          value: https://argo-cd.readthedocs.io/en/stable/
+    # App-of-apps for workloads (kargo, etc.)
+    argo-stack-apps:
+      namespace: argo-stack
+      sources:
+        - repoURL: https://github.com/ansilh/kind-argo-stack.git
+          targetRevision: main
+          path: apps/all # Any argocd applications under this directory will be synced. However, the apps within this directory will not be synced.
+          directory:
+            recurse: true
+      project: argo-stack
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: argo-stack
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
+        automated:
+          prune: false
+          selfHeal: false

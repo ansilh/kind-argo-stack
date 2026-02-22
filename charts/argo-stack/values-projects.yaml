@@ -1,0 +1,17 @@
+argocd-apps:
+  projects:
+    # Project to handle ArgoCD Stack
+    argo-stack:
+      namespace: argo-stack
+      description: All Argo Services
+      sourceRepos:
+        - '*'
+      destinations:
+        - namespace: '*'
+          server: https://kubernetes.default.svc
+      clusterResourceWhitelist:
+        - group: '*'
+          kind: '*'
+      namespaceResourceWhitelist:
+        - group: '*'
+          kind: '*'
