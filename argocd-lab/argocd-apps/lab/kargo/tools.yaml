@@ -18,7 +18,7 @@ spec:
             adminAccount:
               passwordHash: $$2y$$10$$7HbvpFQmni23nxFobhPRau7AxWPlHvANc1lpchB0X0JYkyCZ7QMbq
               tokenSigningKey: zwAqnhFhem4jyHq4QHtpiUiKKWR7paRx
-  project: default
+  project: lab-tools
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
