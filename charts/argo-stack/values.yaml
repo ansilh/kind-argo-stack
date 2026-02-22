@@ -8,7 +8,7 @@ argo-cd:
 argocd-apps:
   applications:
     # Application to manage ArgoCD & Kargo stack itself
-    argo-stack:
+    argo-stack-apps:
       namespace: argo-stack
       sources:
         - repoURL: https://github.com/ansilh/kind-argo-stack.git
