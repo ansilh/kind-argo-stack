@@ -13,9 +13,10 @@ spec:
     helm:
       releaseName: kargo
       valuesObject:
-        api:
-          adminAccount:
-            passwordHash: $$2y$$10$$7HbvpFQmni23nxFobhPRau7AxWPlHvANc1lpchB0X0JYkyCZ7QMbq
+        kargo:
+          api:
+            adminAccount:
+              passwordHash: $$2y$$10$$7HbvpFQmni23nxFobhPRau7AxWPlHvANc1lpchB0X0JYkyCZ7QMbq
   project: default
   syncPolicy:
     syncOptions:
