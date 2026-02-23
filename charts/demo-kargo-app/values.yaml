@@ -43,6 +43,11 @@ service:
   type: ClusterIP
   port: 80
 
+gateway:
+  name: demo-app
+  className: kgateway
+  hostname: demo-kargo-app.ansil-lab.io
+
 ingress:
   enabled: false
   className: ""
