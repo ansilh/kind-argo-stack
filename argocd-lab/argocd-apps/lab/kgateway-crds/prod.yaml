@@ -8,7 +8,7 @@ spec:
     namespace: kgateway
   source:
     chart: kgateway-crds
-    repoURL: oci://cr.kgateway.dev/kgateway-dev/charts
+    repoURL: oci://cr.kgateway.dev/kgateway-dev/charts/kgateway-crds
     targetRevision: v2.0.5
     helm:
       releaseName: kgateway-crds
