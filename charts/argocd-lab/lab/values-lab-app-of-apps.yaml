@@ -26,6 +26,9 @@ argocd-apps:
         namespace: argocd
       # How to deploy and keep this application up-to-date
       syncPolicy:
+        automated:
+          prune: false
+          selfHeal: false
         syncOptions:
           - CreateNamespace=true
         automated: # Keep this application up to date automatically (auto-sync)
