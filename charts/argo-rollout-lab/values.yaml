@@ -1,4 +1,4 @@
-argoRollouts:
+argorollouts:
   controller:
       initContainers:                                   
         - name: copy-gwapi-plugin

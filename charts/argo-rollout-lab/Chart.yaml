@@ -7,6 +7,6 @@ appVersion: "v1.1.0"
 
 dependencies:
   - name: argo-rollouts
-    alias: argoRollouts
+    alias: argorollouts
     version: 2.40.6
     repository: https://argoproj.github.io/argo-helm
