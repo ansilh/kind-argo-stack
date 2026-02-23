@@ -72,7 +72,12 @@ spec:
       {{- end }}
   strategy:
     canary:
+      stableService: {{ include "demo-kargo-app.fullname" . }} 
       canaryService: {{ include "demo-kargo-app.fullname" . }}-canary
+      trafficRouting:
+        plugins:
+          argoproj-labs/gatewayAPI:
+            httpRoute: {{ include "demo-kargo-app.fullname" . }}
       steps:
       - setWeight: 20
       - pause: {}

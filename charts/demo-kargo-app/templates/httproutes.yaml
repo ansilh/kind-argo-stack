@@ -1,0 +1,16 @@
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: {{ include "demo-kargo-app.fullname" . }}
+spec:
+  parentRefs:
+    - name: kgateway
+      namespace: kgateway-system
+  hostnames:
+    - demo-kargo-app.ansil-lab.io
+  rules:
+    - backendRefs:
+        - name: {{ include "demo-kargo-app.fullname" . }}
+          port: {{ .Values.service.port }}
+        - name: {{ include "demo-kargo-app.fullname" . }}-canary
+          port: {{ .Values.service.port }}
