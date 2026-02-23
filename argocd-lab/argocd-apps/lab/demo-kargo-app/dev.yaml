@@ -5,7 +5,7 @@ metadata:
 spec:
   destination:
     server: 'https://192.168.56.70:6443'
-    namespace: argo-rollout
+    namespace: demo-kargo-app
   source:
     path: charts/demo-kargo-app
     repoURL: 'https://github.com/ansilh/kind-argo-stack.git'
