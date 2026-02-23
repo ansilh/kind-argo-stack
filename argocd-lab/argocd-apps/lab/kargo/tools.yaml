@@ -16,7 +16,7 @@ spec:
         kargo:
           api:
             adminAccount:
-              passwordHash: $$2y$$10$$7HbvpFQmni23nxFobhPRau7AxWPlHvANc1lpchB0X0JYkyCZ7QMbq
+              passwordHash: $2y$10$vrUPI7KI.saN/8CX8tGkYOIJcfGvzYXRQureocIS/KHTUUNooPHGm
               tokenSigningKey: zwAqnhFhem4jyHq4QHtpiUiKKWR7paRx
   project: lab-tools
   syncPolicy:
