@@ -5,7 +5,7 @@ metadata:
 spec:
   parentRefs:
     - name: kgateway
-      namespace: kgateway-system
+      namespace: kgateway
   hostnames:
     - demo-kargo-app.ansil-lab.io
   rules:
