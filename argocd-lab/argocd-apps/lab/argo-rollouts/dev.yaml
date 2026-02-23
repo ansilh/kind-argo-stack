@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-rollout-lab
+spec:
+  destination:
+    server: 'https://192.168.56.70:6443'
+    namespace: argo-rollout
+  source:
+    path: charts/argo-rollout-lab
+    repoURL: 'https://github.com/ansilh/kind-argo-stack.git'
+    targetRevision: main
+    helm:
+      releaseName: argo-rollout
+  project: lab-tools
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
