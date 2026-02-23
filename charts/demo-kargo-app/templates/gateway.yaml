@@ -2,7 +2,6 @@ kind: Gateway
 apiVersion: gateway.networking.k8s.io/v1
 metadata:
   name: demo-app
-  namespace: kgateway-system
 spec:
   gatewayClassName: kgateway
   listeners:
