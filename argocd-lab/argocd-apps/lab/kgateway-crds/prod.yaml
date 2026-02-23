@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kgateway-crds-prod
+spec:
+  destination:
+    server: 'https://192.168.56.80:6443'
+    namespace: kgateway
+  source:
+    path: charts/kgateway-crds
+    repoURL: 'https://github.com/ansilh/kind-argo-stack.git'
+    targetRevision: main
+    helm:
+      releaseName: kgateway-crds
+  project: lab-tools
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
