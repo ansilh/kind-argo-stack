@@ -90,7 +90,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: argo-rollouts-dashboard
-  namespace: argo-rollouts
+  namespace: argo-rollout
 ---
 apiVersion: v1
 kind: Service
