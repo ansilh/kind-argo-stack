@@ -16,6 +16,6 @@ roleRef:
   kind: ClusterRole
   name: gateway-controller-role
 subjects:
-  - namespace: argo-rollouts
+  - namespace: argo-rollout
     kind: ServiceAccount
     name: argo-rollout-argorollouts
