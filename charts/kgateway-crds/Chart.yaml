@@ -1,0 +1,11 @@
+apiVersion: v2
+name: kgateway-crd
+description: Install KGatewayCRDs
+type: application
+version: v2.0.5
+appVersion: "v1.1.0"
+
+dependencies:
+  - name: kgateway-crds
+    version: v2.0.5
+    repository: oci://cr.kgateway.dev/kgateway-dev/charts
