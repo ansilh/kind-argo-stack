@@ -7,14 +7,11 @@ spec:
     server: 'https://192.168.56.70:6443'
     namespace: kgateway
   source:
-    chart: kgateway-crds
+    path: .
     repoURL: oci://cr.kgateway.dev/kgateway-dev/charts/kgateway-crds
     targetRevision: v2.0.5
     helm:
       releaseName: kgateway-crds
-      valuesObject:
-        crds:
-          enabled: true
   project: lab-tools
   syncPolicy:
     syncOptions:
