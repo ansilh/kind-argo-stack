@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kgateway-crds-prod
+spec:
+  destination:
+    server: 'https://192.168.56.80:6443'
+    namespace: kgateway
+  source:
+    chart: kgateway-crds
+    repoURL: oci://cr.kgateway.dev/kgateway-dev/charts
+    targetRevision: v2.0.5
+    helm:
+      releaseName: kgateway-crds
+      valuesObject:
+        crds:
+          enabled: true
+  project: lab-tools
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true

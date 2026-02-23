@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager-lab-dev
+spec:
+  destination:
+    server: 'https://192.168.56.70:6443'
+    namespace: cert-manager
+  source:
+    chart: cert-manager
+    repoURL: quay.io/jetstack/charts
+    targetRevision: v1.19.2
+    helm:
+      releaseName: cert-manager
+      valuesObject:
+        crds:
+          enabled: true
+  project: lab-tools
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
