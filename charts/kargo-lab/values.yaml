@@ -1,3 +1,4 @@
-api:
- service:
-   type: LoadBalancer
+kargo:
+  api:
+    service:
+      type: LoadBalancer
