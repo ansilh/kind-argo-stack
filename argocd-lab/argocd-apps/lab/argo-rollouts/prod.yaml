@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argo-rollout-lab
+  name: argo-rollout-prod-lab
 spec:
   destination:
     server: 'https://192.168.56.80:6443'
