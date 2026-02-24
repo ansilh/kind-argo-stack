@@ -13,12 +13,12 @@ spec:
           port: {{ .Values.service.port }}
           weight: 100
           group: ""
-          kind: "Service"
+          kind: Service
         - name: {{ include "demo-kargo-app.fullname" . }}-canary
           port: {{ .Values.service.port }}
           weight: 0
           group: ""
-          kind: "Service"
+          kind: Service
         matches:
         - path:
             type: PathPrefix
