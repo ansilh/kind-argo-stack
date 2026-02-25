@@ -8,3 +8,5 @@ spec:
   - image:
       repoURL: ghcr.io/ansilh/rollouts-demo
       imageSelectionStrategy: SemVer
+      discoveryLimit: 20
+      strictSemvers: true
