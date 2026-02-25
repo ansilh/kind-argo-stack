@@ -2,6 +2,8 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: demo-kargo-app-dev
+  annotations:
+    kargo.akuity.io/authorized-stage: "demo-kargo-app:dev"
 spec:
   destination:
     server: 'https://192.168.56.70:6443'
