@@ -31,8 +31,7 @@ spec:
     config:
       path: ./out
       message: "${{
-        ctx.targetFreight.origin.name == 'webapp' ? 
-        'updated '+ctx.stage+' webapp to '+imageFrom( vars.image ).Tag :
+        'updated '+ctx.stage+' webapp to '+imageFrom( vars.image ).Tag 
         }}"
   - uses: git-push
     config:
