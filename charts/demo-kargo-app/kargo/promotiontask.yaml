@@ -22,7 +22,7 @@ spec:
     uses: yaml-update
     as: update-image
     config:
-      path: ./out/charts/demo-kargo-app/values.yaml
+      path: ./out/charts/demo-kargo-app/env/${{ ctx.stage }}/values.yaml
       updates:
       - key: image.tag
         value: ${{ imageFrom( vars.image ).Tag }}

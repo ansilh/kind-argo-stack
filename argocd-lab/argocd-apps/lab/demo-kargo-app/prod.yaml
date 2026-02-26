@@ -14,6 +14,8 @@ spec:
     targetRevision: main
     helm:
       releaseName: demo-kargo-app
+      valueFiles:
+      - env/prod/values.yaml
   project: lab-tools
   syncPolicy:
     syncOptions:
