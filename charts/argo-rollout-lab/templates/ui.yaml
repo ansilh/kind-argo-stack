@@ -103,7 +103,7 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 3100
+  - port: 80
     protocol: TCP
     targetPort: 3100
   selector:
