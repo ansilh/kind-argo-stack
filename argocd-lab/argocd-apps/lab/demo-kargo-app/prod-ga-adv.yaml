@@ -15,7 +15,7 @@ spec:
     helm:
       releaseName: demo-kargo-app-prod-ga-adv
       valueFiles:
-      - env/prod-ga/values.yaml
+      - env/prod-ga-adv/values.yaml
   project: lab-tools
   syncPolicy:
     syncOptions:

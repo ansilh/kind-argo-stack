@@ -15,7 +15,7 @@ spec:
     helm:
       releaseName: demo-kargo-app-uat
       valueFiles:
-      - env/uat/values.yaml
+      - env/uat-adv/values.yaml
   project: lab-tools
   syncPolicy:
     syncOptions:

@@ -15,7 +15,7 @@ spec:
     helm:
       releaseName: demo-kargo-app-stg
       valueFiles:
-      - env/stg/values.yaml
+      - env/stg-adv/values.yaml
   project: lab-tools
   syncPolicy:
     syncOptions:
