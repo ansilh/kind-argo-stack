@@ -9,6 +9,8 @@ spec:
     provider:
       job:
         metadata:
+         labels:
+           name: analysis-ok
         spec:
           backoffLimit: 1
           template:
@@ -32,6 +34,7 @@ spec:
     provider:
       job:
         metadata:
+           name: analysis-nok
         spec:
           backoffLimit: 1
           template:
