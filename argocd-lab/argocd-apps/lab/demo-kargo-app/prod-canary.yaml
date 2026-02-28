@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: demo-kargo-app-prod-canary
+  name: demo-kargo-app-prod-canary-adv
   annotations:
     kargo.akuity.io/authorized-stage: "demo-kargo-app:prod-canary"
 spec:

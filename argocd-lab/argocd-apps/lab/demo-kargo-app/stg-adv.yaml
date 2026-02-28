@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: demo-kargo-app-stg
+  name: demo-kargo-app-stg-adv
   annotations:
     kargo.akuity.io/authorized-stage: "adv-demo-kargo-app:stg"
 spec:
