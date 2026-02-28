@@ -3,7 +3,7 @@ kind: Application
 metadata:
   name: demo-kargo-app-stg-adv
   annotations:
-    kargo.akuity.io/authorized-stage: "adv-demo-kargo-app:stg"
+    kargo.akuity.io/authorized-stage: "adv-demo-kargo-app:stg-adv"
 spec:
   destination:
     server: 'https://192.168.56.70:6443'
