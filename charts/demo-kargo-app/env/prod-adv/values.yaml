@@ -1,0 +1,6 @@
+canary:
+ pause: 1000
+image:
+  tag: v0.1.2
+gateway:
+  hostname: prod-adv-kargo-app.ansil-lab.io
