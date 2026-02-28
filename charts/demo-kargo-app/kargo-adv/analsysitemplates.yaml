@@ -34,6 +34,7 @@ spec:
     provider:
       job:
         metadata:
+         labels:
            name: analysis-nok
         spec:
           backoffLimit: 1
