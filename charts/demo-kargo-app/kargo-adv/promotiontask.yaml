@@ -1,0 +1,42 @@
+apiVersion: kargo.akuity.io/v1alpha1
+kind: PromotionTask
+metadata:
+  name: promote
+  namespace: demo-kargo-app
+spec:
+  vars:
+  - name: image
+    value: ghcr.io/ansilh/rollouts-demo
+  - name: repoURL
+    value: https://github.com/ansilh/kind-argo-stack.git
+  - name: branch
+    value: main
+  steps:
+  - uses: git-clone
+    config:
+      repoURL: ${{ vars.repoURL }}
+      checkout:
+      - branch: ${{ vars.branch }}
+        path: ./out
+  - if: ${{ ctx.targetFreight.origin.name == "webapp" }}
+    uses: yaml-update
+    as: update-image
+    config:
+      path: ./out/charts/demo-kargo-app/env/${{ ctx.stage }}/values.yaml
+      updates:
+      - key: image.tag
+        value: ${{ imageFrom( vars.image ).Tag }}
+  - uses: git-commit
+    as: commit
+    config:
+      path: ./out
+      message: "${{
+        'updated '+ctx.stage+' webapp to '+imageFrom( vars.image ).Tag 
+        }}"
+  - uses: git-push
+    config:
+      path: ./out
+  - uses: argocd-update
+    config:
+      apps:
+      - name: demo-kargo-app-${{ ctx.stage }}

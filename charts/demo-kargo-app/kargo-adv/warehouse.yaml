@@ -1,0 +1,12 @@
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Warehouse
+metadata:
+  name: webapp
+  namespace: demo-kargo-app
+spec:
+  subscriptions:
+  - image:
+      repoURL: ghcr.io/ansilh/rollouts-demo
+      imageSelectionStrategy: SemVer
+      discoveryLimit: 20
+      strictSemvers: true

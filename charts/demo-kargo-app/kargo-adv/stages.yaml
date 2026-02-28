@@ -1,0 +1,154 @@
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: dev-adv
+  namespace: adv-demo-kargo-app
+  annotations:
+    kargo.akuity.io/color: green
+    kargo.akuity.io/argocd-context: '[{"name":"demo-kargo-app-dev-adv",
+                                        "namespace":"argocd"}]'
+spec:
+  requestedFreight:
+  - origin:
+      kind: Warehouse
+      name: webapp
+    sources:
+      direct: true
+  promotionTemplate:
+    spec:
+      steps:
+      - task:
+          name: promote
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: uat-adv
+  namespace: adv-demo-kargo-app
+  annotations:
+    kargo.akuity.io/color: blue
+    kargo.akuity.io/argocd-context: '[{"name":"demo-kargo-app-uat-adv","namespace":"argocd"}]'
+spec:
+  requestedFreight:
+  - origin:
+      kind: Warehouse
+      name: webapp
+    sources:
+      stages:
+        - dev-adv
+  promotionTemplate:
+    spec:
+      steps:
+      - task:
+          name: promote
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: stg-adv
+  namespace: adv-demo-kargo-app
+  annotations:
+    kargo.akuity.io/color: red
+    kargo.akuity.io/argocd-context: '[{"name":"demo-kargo-app-stg-adv","namespace":"argocd"}]'
+spec:
+  requestedFreight:
+  - origin:
+      kind: Warehouse
+      name: webapp
+    sources:
+      stages:
+        - uat-adv
+  promotionTemplate:
+    spec:
+      steps:
+      - task:
+          name: promote
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: prod-a-adv
+  namespace: adv-demo-kargo-app
+  annotations:
+    kargo.akuity.io/color: blue
+    kargo.akuity.io/argocd-context: '[{"name":"demo-kargo-app-prod-a-adv","namespace":"argocd"}]'
+spec:
+  requestedFreight:
+  - origin:
+      kind: Warehouse
+      name: webapp
+    sources:
+      stages:
+        - stg-adv
+  promotionTemplate:
+    spec:
+      steps:
+      - task:
+          name: promote
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: prod-b-adv
+  namespace: adv-demo-kargo-app
+  annotations:
+    kargo.akuity.io/color: blue
+    kargo.akuity.io/argocd-context: '[{"name":"demo-kargo-app-prod-b-adv","namespace":"argocd"}]'
+spec:
+  requestedFreight:
+  - origin:
+      kind: Warehouse
+      name: webapp
+    sources:
+      stages:
+        - stg-adv
+  promotionTemplate:
+    spec:
+      steps:
+      - task:
+          name: promote
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: prod-canary-adv
+  namespace: adv-demo-kargo-app
+  annotations:
+    kargo.akuity.io/color: blue
+    kargo.akuity.io/argocd-context: '[{"name":"demo-kargo-app-prod-canary-adv","namespace":"argocd"}]'
+spec:
+  requestedFreight:
+  - origin:
+      kind: Warehouse
+      name: webapp
+    sources:
+      stages:
+        - prod-a-adv
+        - prod-b-adv
+  promotionTemplate:
+    spec:
+      steps:
+      - task:
+          name: promote
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: prog-ga-adv
+  namespace: adv-demo-kargo-app
+  annotations:
+    kargo.akuity.io/color: blue
+    kargo.akuity.io/argocd-context: '[{"name":"demo-kargo-app-prod-ga-adv","namespace":"argocd"}]'
+spec:
+  requestedFreight:
+  - origin:
+      kind: Warehouse
+      name: webapp
+    sources:
+      stages:
+        - prod-canary-adv
+  promotionTemplate:
+    spec:
+      steps:
+      - task:
+          name: promote
