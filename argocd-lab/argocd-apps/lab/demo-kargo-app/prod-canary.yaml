@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: demo-kargo-app-prod-canary
+  annotations:
+    kargo.akuity.io/authorized-stage: "demo-kargo-app:prod-canary"
+spec:
+  destination:
+    server: 'https://192.168.56.80:6443'
+    namespace: demo-kargo-app-prod-canary
+  source:
+    path: charts/demo-kargo-app
+    repoURL: 'https://github.com/ansilh/kind-argo-stack.git'
+    targetRevision: main
+    helm:
+      releaseName: demo-kargo-app-prod-canary
+      valueFiles:
+      - env/prod-canary/values.yaml
+  project: lab-tools
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true

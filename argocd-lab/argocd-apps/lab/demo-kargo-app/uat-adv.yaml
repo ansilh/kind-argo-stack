@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: demo-kargo-app-uat-adv
+  annotations:
+    kargo.akuity.io/authorized-stage: "adv-demo-kargo-app:uat"
+spec:
+  destination:
+    server: 'https://192.168.56.70:6443'
+    namespace: demo-kargo-app-uat
+  source:
+    path: charts/demo-kargo-app
+    repoURL: 'https://github.com/ansilh/kind-argo-stack.git'
+    targetRevision: main
+    helm:
+      releaseName: demo-kargo-app-uat
+      valueFiles:
+      - env/uat/values.yaml
+  project: lab-tools
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
