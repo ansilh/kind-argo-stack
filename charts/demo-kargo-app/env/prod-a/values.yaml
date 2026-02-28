@@ -1,5 +1,5 @@
 canary:
- pause: 1000
+ pause: 0
 image:
   tag: v0.1.2
 gateway:

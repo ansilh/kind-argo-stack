@@ -1,0 +1,45 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: succesfull-analysis
+  namespace: adv-demo-kargo-app
+spec:
+  metrics:
+  - name: test
+    provider:
+      job:
+        metadata:
+        spec:
+          backoffLimit: 1
+          template:
+            spec:
+              containers:
+              - name: test
+                image: ghcr.io/linuxcontainers/alpine:latest
+                command:
+                - sleep
+                - "10"
+              restartPolicy: Never
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: failing-analysis
+  namespace: adv-demo-kargo-app
+spec:
+  metrics:
+  - name: test
+    provider:
+      job:
+        metadata:
+        spec:
+          backoffLimit: 1
+          template:
+            spec:
+              containers:
+              - name: test
+                image: ghcr.io/linuxcontainers/alpine:latest
+                command:
+                - sleepzzzzzzzzz
+                - "10"
+              restartPolicy: Never
